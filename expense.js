@@ -14,7 +14,7 @@ let expenseDetails = {
 
 const token=localStorage.getItem('token')
 
-const data=await axios.post("http://localhost:3000/expense/addexpense", expenseDetails,{headers:{"Authorization": token}})
+const data=await axios.post("http://54.187.233.96:3000/expense/addexpense", expenseDetails,{headers:{"Authorization": token}})
 if(data.status===201){
    
       alert(data.data.message)
@@ -49,7 +49,7 @@ d.innerHTML+=li;
    const expensecontainer=document.getElementById("expenses")
    expensecontainer.innerHTML=""
    
-    axios.get("http://localhost:3000/expense/getexpense/?page=1",{headers: {"Authorization": token}} )
+    axios.get("http://54.187.233.96:3000/expense/getexpense/?page=1",{headers: {"Authorization": token}} )
     .then(expenses=>{
         console.log(expenses.data.user);
        if(expenses.data.user.ispremiumuser===true){
@@ -104,7 +104,7 @@ d.innerHTML+=li;
                 pagenation.innerHTML=""
                 expensecontainer.innerHTML=""
                 axios
-            .get(`http://localhost:3000/expense/getexpense/?page=${UserId}`,{headers:{"Authorization":token}})
+            .get(`http://54.187.233.96:3000/expense/getexpense/?page=${UserId}`,{headers:{"Authorization":token}})
             .then((expenses)=>{
                 console.log(expenses.data.obj)
                 const pages=expenses.data.obj
@@ -168,7 +168,7 @@ d.innerHTML+=li;
 //deleting the user
 function deleteUser(expenseid){
     const token=localStorage.getItem('token')
-    axios.delete(`http://localhost:3000/expense/deleteuser/${expenseid}`,{headers: {"Authorization": token}}).then(()=>{
+    axios.delete(`http://54.187.233.96:3000/expense/deleteuser/${expenseid}`,{headers: {"Authorization": token}}).then(()=>{
         removeuserfromScreen(expenseid);
        
     })
@@ -180,7 +180,7 @@ function deleteUser(expenseid){
     document.getElementById(expenseElemid).remove();
        }
    async function gopremium(event){
-    const response  = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: {"Authorization" : token} });
+    const response  = await axios.get('http://54.187.233.96:3000/purchase/premiummembership', { headers: {"Authorization" : token} });
     console.log('!!!!!!!!!!!',response);
     var options =
     {
@@ -198,7 +198,7 @@ function deleteUser(expenseid){
      // This handler function will handle the success payment
      "handler": function (response) {
          console.log(response);
-         axios.post('http://localhost:3000/purchase/updatetransactionstatus',{
+         axios.post('http://54.187.233.96:3000/purchase/updatetransactionstatus',{
             
              order_id: options.order_id,
              payment_id: response.razorpay_payment_id,
@@ -225,7 +225,7 @@ function deleteUser(expenseid){
  });
 }
 function download(){
-    axios.get('http://localhost:3000/expense/download', { headers: {"Authorization" : token} })
+    axios.get('http://54.187.233.96:3000/expense/download', { headers: {"Authorization" : token} })
     .then((response) => {
         if(response.status === 200){
             //the bcakend is essentially sending a download link

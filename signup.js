@@ -10,7 +10,7 @@ async function createUser(event) {
         email:email,
         password:password
     }
-const response=await axios.post('http://localhost:3000/users/signup',userDetails)
+const response=await axios.post('http://54.187.233.96:3000/users/signup',userDetails)
 
    if(response.status == 201) {
     console.log('done');

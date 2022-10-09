@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const dotenv=require('dotenv')
 dotenv.config();
-
+const path = require('path');
 const app = express()
 
 const cors =  require('cors')
@@ -32,6 +32,10 @@ const { start } = require('pm2');
 app.use('/purchase',purchaseRoutes)
 app.use('/users',userRoute)
 app.use('/expense',expenseRoute)
+app.use((req,res)=>{
+    console.log(req.url)
+    res.sendFile(path.join(__dirname,`${req.url}`));
+})
 sequelize.sync()
 .then(result=>{
     app.listen(3000)
