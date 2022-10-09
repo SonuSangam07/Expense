@@ -9,7 +9,7 @@ let logindetails = {
     password: password
 }
 
-const data=await axios.post('http://localhost:3000/users/login',logindetails)
+const data=await axios.post('http://54.187.233.96:3000/users/login',logindetails)
 
    if(data.status==200){
     alert(data.data.message)

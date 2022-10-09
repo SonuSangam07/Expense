@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let div = document.getElementById("predetails");
   
     axios
-      .get("http://localhost:3000/expense/getallusers")
+      .get("http://54.187.233.96:3000/expense/getallusers")
       .then((response) => {
   //console.log(response);
         for (let i = 0; i < response.data.users.length; i++) {
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
   
   function seeexp(userid) {
     axios
-      .get(`http://localhost:3000/expense/getallexpense/${userid}`)
+      .get(`http://54.187.233.96:3000/expense/getallexpense/${userid}`)
       .then((response) => {
         let parent = document.getElementById("popin");
         let content = '';
